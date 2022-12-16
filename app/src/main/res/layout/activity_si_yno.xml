@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/Siynoimagencarta"
-        android:layout_width="50dp"
-        android:layout_height="76dp"
+        android:layout_width="225dp"
+        android:layout_height="322dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/Siynotitulocarta"
         app:layout_constraintStart_toStartOf="@+id/Siynotitulocarta"

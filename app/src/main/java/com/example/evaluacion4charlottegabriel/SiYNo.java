@@ -47,20 +47,20 @@ public class SiYNo extends AppCompatActivity {
                 54, 56, 57, 58, 59,
                 67, 68
         };
-        Integer[] quizas = {
-                2, 4, 5, 9, 11,
-                12, 39, 42, 51, 53,
-                55, 62, 63, 65, 70
-        };
-        if (Arrays.asList(si).contains(numero)){
+
+        if (Arrays.asList(si).contains(numero)) {
             tvresultado.setText("Tu respuesta es si₍ᐢ. ̫ .ᐢ₎");
-        }
-        else if (Arrays.asList(no).contains(numero)){
+        } else if (Arrays.asList(no).contains(numero)) {
             tvresultado.setText("Tu respuesta es no lo siento(ó﹏ò｡)");
-        }
-        else {
+        } else {
             tvresultado.setText("(ง ˃ ³ ˂)ว ⁼³₌₃⁼³ Tu respuesta es talves");
 
         }
+
+        String nombreCarta = String.format("carta%d", numero);
+        int valorimagencarta = getResources().getIdentifier(nombreCarta, "drawable", getPackageName());
+        ivcarta.setImageResource(valorimagencarta);
+        
+
     }
 }
