@@ -13,8 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public  void iniciar_actividad_siyno(View view){
+    public  void iniciarActividadSiyno(View view){
         Intent i = new Intent( this, SiYNo.class);
         startActivity(i);
     }
+
+    public  void inciarActividadCartaDelDia(View view){
+        Intent i = new Intent( this, CartaDelDia.class);
+        startActivity(i);
+    }
+
 }

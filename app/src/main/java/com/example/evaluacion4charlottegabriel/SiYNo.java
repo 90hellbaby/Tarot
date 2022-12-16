@@ -60,7 +60,8 @@ public class SiYNo extends AppCompatActivity {
         String nombreCarta = String.format("carta%d", numero);
         int valorimagencarta = getResources().getIdentifier(nombreCarta, "drawable", getPackageName());
         ivcarta.setImageResource(valorimagencarta);
-        
+
+
 
     }
 }
