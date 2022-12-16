@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     public  void inciarActividadCartaDelDia(View view){
         Intent i = new Intent( this, CartaDelDia.class);
+
         startActivity(i);
     }
 

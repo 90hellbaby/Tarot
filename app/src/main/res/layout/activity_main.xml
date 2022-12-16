@@ -92,7 +92,7 @@
         android:layout_width="81dp"
         android:layout_height="83dp"
         android:layout_marginTop="20dp"
-        android:onClick="iniciar_actividad_siyno"
+        android:onClick="iniciarActividadSiyno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintHorizontal_bias="0.496"
