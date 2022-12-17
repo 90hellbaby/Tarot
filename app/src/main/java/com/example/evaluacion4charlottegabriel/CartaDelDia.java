@@ -55,7 +55,7 @@ public class CartaDelDia extends AppCompatActivity {
                 Carta carta =  snapshot.getValue(Carta.class);
                 tvTitulo.setText(carta.getTitulo());
                 tvDescripcion.setText(carta.getDescripcion());
-                
+
             }
 
             @Override
