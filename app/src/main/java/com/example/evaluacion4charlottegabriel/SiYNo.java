@@ -1,20 +1,13 @@
 package com.example.evaluacion4charlottegabriel;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.evaluacion4charlottegabriel.Dao.Carta;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
@@ -36,17 +29,23 @@ public class SiYNo extends AppCompatActivity {
         // Obtener los extras del intent
         Bundle bundle = getIntent().getExtras();
         int numero = bundle.getInt("numero");
+        int rotacion = bundle.getInt("rotacion");
         Carta carta = (Carta) bundle.getSerializable("carta");
 
         // Mostrar la informacion de la carta
-        tvdescripcion.setText(carta.getDescripcion());
-        tvtitulo.setText(carta.getTitulo());
+        if (rotacion == 0) {
+            tvdescripcion.setText(carta.getDescripcion());
+            tvtitulo.setText(carta.getTitulo());
+        } else {
+            tvdescripcion.setText("La carta esta invertida");
+            tvtitulo.setText(carta.getTitulo() + " invertida");
+        }
 
         // Mostrar imagen y resultado
-        SiNoQuizas(numero);
+        SiNoQuizas(numero, rotacion);
     }
 
-    private void SiNoQuizas(int numero) {
+    private void SiNoQuizas(int numero, int rotacion) {
         Integer[] si = {
                 0, 1, 3, 6, 7,
                 8, 10, 14, 17, 19,
@@ -81,5 +80,6 @@ public class SiYNo extends AppCompatActivity {
         String nombreCarta = String.format("carta%d", numero);
         int valorimagencarta = getResources().getIdentifier(nombreCarta, "drawable", getPackageName());
         ivcarta.setImageResource(valorimagencarta);
+        ivcarta.setRotation(rotacion);
     }
 }
