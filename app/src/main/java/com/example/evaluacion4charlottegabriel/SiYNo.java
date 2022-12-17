@@ -19,8 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Arrays;
 
 public class SiYNo extends AppCompatActivity {
-    private TextView tvtitulo;
-    private TextView tvdescripcion;
     private TextView tvresultado;
     private ImageView ivcarta;
 
@@ -28,15 +26,27 @@ public class SiYNo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_si_yno);
-        tvtitulo = findViewById(R.id.Siynotitulocarta);
-        tvdescripcion = findViewById(R.id.Siynodescripcion);
+
+        // Vincular los elementos de la vista
+        TextView tvtitulo = findViewById(R.id.Siynotitulocarta);
+        TextView tvdescripcion = findViewById(R.id.Siynodescripcion);
         tvresultado = findViewById(R.id.Siynoresultado);
         ivcarta = findViewById(R.id.Siynoimagencarta);
-        SiNoQuizas();
+
+        // Obtener los extras del intent
+        Bundle bundle = getIntent().getExtras();
+        int numero = bundle.getInt("numero");
+        Carta carta = (Carta) bundle.getSerializable("carta");
+
+        // Mostrar la informacion de la carta
+        tvdescripcion.setText(carta.getDescripcion());
+        tvtitulo.setText(carta.getTitulo());
+
+        // Mostrar imagen y resultado
+        SiNoQuizas(numero);
     }
 
-    private void SiNoQuizas() {
-        int numero = (int) (Math.random() * 78);
+    private void SiNoQuizas(int numero) {
         Integer[] si = {
                 0, 1, 3, 6, 7,
                 8, 10, 14, 17, 19,
@@ -56,34 +66,20 @@ public class SiYNo extends AppCompatActivity {
                 67, 68
         };
 
+        // Determinar resultado
+        String resultado;
         if (Arrays.asList(si).contains(numero)) {
-            tvresultado.setText("Tu respuesta es si₍ᐢ. ̫ .ᐢ₎");
+            resultado = "Tu respuesta es si₍ᐢ. ̫ .ᐢ₎";
         } else if (Arrays.asList(no).contains(numero)) {
-            tvresultado.setText("Tu respuesta es no lo siento(ó﹏ò｡)");
+            resultado = "Tu respuesta es no lo siento(ó﹏ò｡)";
         } else {
-            tvresultado.setText("(ง ˃ ³ ˂)ว ⁼³₌₃⁼³ Tu respuesta es talves");
-
+            resultado = "(ง ˃ ³ ˂)ว ⁼³₌₃⁼³ Tu respuesta es talves";
         }
+        tvresultado.setText(resultado);
 
+        // Determinar imagen y mostrarla
         String nombreCarta = String.format("carta%d", numero);
         int valorimagencarta = getResources().getIdentifier(nombreCarta, "drawable", getPackageName());
         ivcarta.setImageResource(valorimagencarta);
-
-        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
-        referencia.child(String.valueOf(numero)).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Carta carta =  snapshot.getValue(Carta.class);
-                tvtitulo.setText(carta.getTitulo());
-                tvdescripcion.setText(carta.getDescripcion());
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
     }
 }

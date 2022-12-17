@@ -1,6 +1,8 @@
 package com.example.evaluacion4charlottegabriel.Dao;
 
-public class Carta {
+import java.io.Serializable;
+
+public class Carta implements Serializable {
 
     private String titulo;
 
