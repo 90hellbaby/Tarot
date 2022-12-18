@@ -32,46 +32,26 @@ public class tarotPareja extends AppCompatActivity {
         tvtitulotupareja = findViewById(R.id.tarotTuParejatitulocarta);
         ivcartatupareja = findViewById(R.id.tarotTuparejaImagen);
         ivcartatu = findViewById(R.id.tarotParejaTuImagen);
-        tarotPareja();
-    }
-    private void tarotPareja(){
-        int numerotupersona = (int) (Math.random() * 78);
-        int numero = (int) (Math.random() * 78);
 
+        Bundle bundle = getIntent().getExtras();
+        int numero = bundle.getInt("numero");
+        int numerotupersona = bundle.getInt("numerotupersona");
+        tarotPareja(numero , numerotupersona);
+        Carta tu = (Carta)bundle.getSerializable("tu");
+        Carta pareja = (Carta)bundle.getSerializable("pareja");
+        tvtitulotupareja.setText(pareja.getTitulo());
+        tvtitulotu.setText(tu.getTitulo());
+        tvdescripciontupareja.setText(pareja.getDescripcionAmorosa());
+        tvdescriciontu.setText(tu.getDescripcionAmorosa());
+
+    }
+    private void tarotPareja(int numero, int numerotupersona) {
         String nombreCarta = String.format("carta%d", numero);
         String nombreCartatupersona = String.format("carta%d", numerotupersona);
         int valorimagencarta = getResources().getIdentifier(nombreCarta, "drawable", getPackageName());
         int valorimagencartatupersona = getResources().getIdentifier(nombreCartatupersona, "drawable", getPackageName());
         ivcartatu.setImageResource(valorimagencarta);
         ivcartatupareja.setImageResource(valorimagencartatupersona);
-
-        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
-        referencia.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Carta tu;
-                Carta pareja;
-                for (DataSnapshot cartaActual : snapshot.getChildren()){
-                    if (cartaActual.getKey().equals(String.valueOf(numero))){
-                        tu = cartaActual.getValue(Carta.class);
-                        tvtitulotu.setText(tu.getTitulo());
-                        tvdescriciontu.setText(tu.getDescripcionAmorosa());
-                    }
-                    if (cartaActual.getKey().equals(String.valueOf(numerotupersona))){
-                        pareja = cartaActual.getValue(Carta.class);
-                        tvtitulotupareja.setText(pareja.getTitulo());
-                        tvdescripciontupareja.setText(pareja.getDescripcionAmorosa());
-                    }
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 }

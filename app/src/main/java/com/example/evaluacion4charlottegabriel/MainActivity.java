@@ -90,6 +90,41 @@ public class MainActivity extends AppCompatActivity {
     }
     public void iniciarActividadTarotPareja(View view){
         Intent i = new Intent(this, tarotPareja.class);
-        startActivity(i);
+        Bundle bundle = new Bundle();
+
+        int numero = (int) (Math.random() * 78);
+        int numerotupersona = (int) (Math.random() * 78);
+
+        bundle.putInt("numero" , numero);
+        bundle.putInt("numerotupersona" , numerotupersona);
+
+
+        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+        referencia.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot cartaActual : snapshot.getChildren()){
+                    if (cartaActual.getKey().equals(String.valueOf(numero))){
+                        Carta tu = cartaActual.getValue(Carta.class);
+                        bundle.putSerializable("tu", tu);
+                    }
+                    if (cartaActual.getKey().equals(String.valueOf(numerotupersona))){
+                        Carta pareja = cartaActual.getValue(Carta.class);
+                        bundle.putSerializable("pareja", pareja);
+                    }
+                }
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 }
