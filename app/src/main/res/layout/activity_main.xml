@@ -104,6 +104,47 @@
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:srcCompat="@drawable/uwu" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tarot de las parejas"
+            android:textColor="#987B63"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="253dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="24dp"
+            android:text="Ingresa tu fecha de nacimiento y la de tu persona especial."
+            android:textAlignment="center"
+            android:textColor="#916E4E"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.63"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="81dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="16dp"
+            android:onClick="iniciarActividadTarotPareja"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:srcCompat="@drawable/uwu" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

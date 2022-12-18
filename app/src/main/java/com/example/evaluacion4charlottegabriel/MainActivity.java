@@ -88,4 +88,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void iniciarActividadTarotPareja(View view){
+        Intent i = new Intent(this, tarotPareja.class);
+        startActivity(i);
+    }
 }
