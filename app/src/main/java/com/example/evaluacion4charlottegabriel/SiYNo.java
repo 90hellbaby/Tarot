@@ -37,7 +37,7 @@ public class SiYNo extends AppCompatActivity {
             tvdescripcion.setText(carta.getDescripcion());
             tvtitulo.setText(carta.getTitulo());
         } else {
-            tvdescripcion.setText("La carta esta invertida");
+            tvdescripcion.setText(carta.getDescripcionInvertida());
             tvtitulo.setText(carta.getTitulo() + " invertida");
         }
 

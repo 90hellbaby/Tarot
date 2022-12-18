@@ -32,7 +32,7 @@ public class CartaDelDia extends AppCompatActivity {
             tvDescripcion.setText(carta.getDescripcion());
             tvTitulo.setText(carta.getTitulo());
         } else {
-            tvDescripcion.setText("La carta esta invertida");
+            tvDescripcion.setText(carta.getDescripcionInvertida());
             tvTitulo.setText(carta.getTitulo() + " invertida");
         }
 
